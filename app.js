@@ -1,13 +1,8 @@
-//__dirname - path to a current directory
-//__filename - file name
-// require - function to use modules
-//module -info about current module
-//process - info about env where the program is being executed
-console.log(__dirname);
-// /workspaces/node
-console.log(__filename);
-// /workspaces/node/app.js
-
-setInterval(()=>{
-    console.log('hello')
-},1000)
+//Modules
+const names = require('./4-names')
+const sayHi = require('./5-utils')
+console.log(names)
+// Returns { john: 'john', peter: 'peter' }
+sayHi('Harry')
+sayHi(names.john)
+sayHi(names.peter)
