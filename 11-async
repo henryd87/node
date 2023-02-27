@@ -7,7 +7,7 @@ readFile('./content/first.txt','utf8',(err,result)=>{
             console.log("error");
             return;
         }
-        const firsecondst = result;
+        const first = result;
         writeFile('./content/result-async.txt','result',
         (err,result)=>{
             if(err){
