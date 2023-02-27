@@ -1,17 +1,14 @@
-const http = require('http')
-const server = http.createServer((req,res)=>{
-    //req is incoming request
-    //res is what we are sending back
-    if(req.url === '/'){
-        res.end('Welcome to our home page')
+const {readFile} = require('fs')
+console.log('check')
+readFile('./content/first.txt','utf8',(err,result)=>{
+    if(err){
+        console.log(err);
+        return
+    }else{
+        console.log(result);
     }
-    if(req.url === '/about'){
-        res.end('Hello to about')
-    }
-    res.end(`<h1>Oops!</h1><hr><h3>We don't have
-     the page you're looking for</h3>
-     <a href="/">Back home</a> `)
-    //do localhost:5000 to see this.
+    console.log('completed this task')
 })
 
-server.listen(5000)
+
+console.log('done')
