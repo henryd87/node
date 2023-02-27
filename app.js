@@ -1,20 +1,31 @@
-const http = require('http')
-const server = http.createServer((req,res)=>{
-    if(req.url==='/'){
-        res.end("Home page")
-    } if(req.url === '/about'){
-        res.end("About page")
-    }
-    for(let i =0;i<1000;i++){
-        for(let j=0; j<1000; j++){
-            console.log(`${i} and ${j}`)
-        }
-    }
-    res.end(`<h1>Oops!</h1>
-    <h2>404 page not found</h2>
-    <a href="/">Back home</a>`)
-})
+const {readFile,writeFile} = require('fs')
+const util = require('util');
+const readFilePromise = util.promisify(readFile);
+const writeFilePromise = util.promisify(writeFile);
+/* const getText = (path) =>{
+    return new Promise((resolve,reject)=>{
+        readFile(path,'utf8',(err,data)=>{
+            if(err){
+                return;
+            }else{
+                console.log(data)
+            }
+        })
+    })
+} */
 
-server.listen(5000,()=>{
-    console.log("Listening on port 5000")
-})
+/*getText('./content/first.txt')
+.then(result=> console.log(result))
+.catch(err=>console.log(err))*/
+
+const start = async() =>{
+    try{
+        const first = await readFilePromise('./content/first.txt','utf8');
+        const second = await readFilePromise('./content/second.txt','utf8');
+        await writeFilePromise('./content/result-mind.txt',`This is awesome: ${first} and ${second}`)
+        console.log(first, second);
+    }catch(error){
+        console.log(error)
+    }
+}
+start()
