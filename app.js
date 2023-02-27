@@ -1,5 +1,7 @@
 const http = require('http')
+//http allows us to send get,post etc requests.
 const server = http.createServer((req,res)=>{
+//created the server
     //req is incoming request
     //res is what we are sending back
     if(req.url === '/'){
